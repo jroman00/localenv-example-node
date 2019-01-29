@@ -1,0 +1,30 @@
+{
+  "name": "test-js",
+  "version": "0.0.1",
+  "description": "A test node.js application",
+  "main": "lib/app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "jest": "^24.0.0",
+    "jest-cli": "^24.0.0",
+    "nodemon": "^1.18.9"
+  },
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint src",
+    "lint-fix": "./node_modules/.bin/eslint --fix src",
+    "start": "node src/app.js",
+    "start-dev": "./node_modules/.bin/nodemon --watch src --exec \"npm run start\"",
+    "test": "./node_modules/.bin/jest test",
+    "test-coverage": "./node_modules/.bin/jest --coverage test"
+  },
+  "author": "",
+  "license": "ISC"
+}

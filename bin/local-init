@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Set BIN_ROOT, the location of the `bin` directory
+readonly BIN_ROOT=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
+
+# Set APP_ROOT, the location of the main application directory
+readonly APP_ROOT=$(cd $BIN_ROOT/../ && pwd)
+
+# Main functionality of the script
+main() {
+
+  echo "Setting up node-example repo..."
+
+  (
+    # Make sure script is running from the main application directory
+    cd $APP_ROOT
+
+    # Build docker images
+    echo "${TAB}Building docker images with docker-compose..."
+    docker-compose build
+
+    # Install node dependencies
+    echo "${TAB}Installing node dependencies..."
+    docker-compose run --rm node-example npm i
+
+    # Compile source code
+    echo "${TAB}Installing node dependencies..."
+    docker-compose run --rm node-example npm run build
+
+    # Start docker containers
+    echo "${TAB}Starting containers with docker-compose..."
+    docker-compose up -d
+  )
+
+  echo "node-example repo setup successfully!"
+}
+
+# Function that outputs usage information
+usage() {
+  cat <<EOF
+
+Usage: $BIN_ROOT/$(basename $0) <options>
+
+Script used to initialize this application
+
+Options:
+  -h                Print this message and quit
+
+EOF
+}
+
+# Parse input options
+while getopts ":h-:" opt; do
+  case "$opt" in
+    h) usage && exit 0;;
+    \?) echo "Invalid option: -$OPTARG." && usage && exit 1;;
+    :) echo >&2 "Option -$OPTARG requires an argument." && exit 1;;
+  esac
+done
+
+# Execute main functionality
+main
