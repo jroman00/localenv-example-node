@@ -1,26 +1,18 @@
-FROM node:10.15.0-alpine
+FROM node:10.15.1-alpine
 
-# Current app version
+# Set up environment variables
+ENV APP_NAME localenv-example-node
 ENV APP_VERSION 0.0.1
 
-# Copy package.json to temp folder
-COPY package*.json /tmp/
-
 # Install node dependencies
-RUN cd /tmp && npm install
+RUN npm install
 
 # Set working directory and copy source
 WORKDIR /var/www
 COPY . /var/www
 
-# Move compiled node modules back
-RUN mv /tmp/node_modules node_modules
-
-# Compile source code
-RUN npm run build
-
 # Expose application port
-EXPOSE 9876
+EXPOSE 8081
 
 # Run start command
 CMD ["npm", "run", "start"]

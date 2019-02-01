@@ -2,39 +2,35 @@
 
 set -e
 
-# Set BIN_ROOT, the location of the `bin` directory
-readonly BIN_ROOT=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
+readonly PARENT_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd -P)
+readonly LOCALENV_DIR=$(cd $(dirname $(dirname $(dirname "$PARENT_DIR"))) && pwd -P)
 
-# Set APP_ROOT, the location of the main application directory
-readonly APP_ROOT=$(cd $BIN_ROOT/../ && pwd)
+readonly APP_DIR=$(cd $(dirname "$PARENT_DIR") && pwd -P)
+
+source $LOCALENV_DIR/bin/utils/shell-helpers.sh
 
 # Main functionality of the script
 main() {
-
-  echo "Setting up node-example repo..."
+  echo_yellow "Setting up localenv-example-node repo..."
 
   (
     # Make sure script is running from the main application directory
-    cd $APP_ROOT
+    cd $APP_DIR
 
     # Build docker images
     echo "${TAB}Building docker images with docker-compose..."
     docker-compose build
 
     # Install node dependencies
-    echo "${TAB}Installing node dependencies..."
-    docker-compose run --rm node-example npm i
-
-    # Compile source code
-    echo "${TAB}Installing node dependencies..."
-    docker-compose run --rm node-example npm run build
+    echo "${TAB}Installing dependencies..."
+    docker-compose run --rm localenv-example-node npm i
 
     # Start docker containers
     echo "${TAB}Starting containers with docker-compose..."
     docker-compose up -d
   )
 
-  echo "node-example repo setup successfully!"
+  echo_green "localenv-example-node repo setup successfully!"
 }
 
 # Function that outputs usage information

@@ -1,7 +1,7 @@
 {
-  "name": "test-js",
+  "name": "@jroman/localenv-example-node",
   "version": "0.0.1",
-  "description": "A test node.js application",
+  "description": "A simple Node.js application built as an example for localenv",
   "main": "lib/app.js",
   "directories": {
     "lib": "lib"

@@ -5,7 +5,7 @@ const express = require('express');
 const StatusController = require('./controllers/StatusController');
 
 const app = express();
-const port = 9876;
+const port = 8081;
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
