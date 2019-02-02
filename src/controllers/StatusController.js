@@ -1,4 +1,3 @@
-const ServerResponse = require('http');
 const BaseController = require('./BaseController');
 const RedisHelper = require('../helpers/RedisHelper');
 
@@ -11,14 +10,14 @@ class StatusController extends BaseController {
   /**
    * @returns {RedisHelper}
    */
-  get redisHelper() {
-    return new RedisHelper();
+  static getRedisHelper() {
+    return RedisHelper.getInstance();
   }
 
   /**
    * @returns {number}
    */
-  getUptime() {
+  static getUptime() {
     return Math.round((Date.now() - startTime) / 1000);
   }
 
@@ -27,18 +26,19 @@ class StatusController extends BaseController {
    */
   getHealth() {
     return this.respond({
-      uptime: this.getUptime(),
+      service: statusOk,
+      uptime: StatusController.getUptime(),
     });
   }
 
   /**
    * @returns {ServerResponse}
    */
-  getReady() {
+  async getReady() {
     return this.respond({
-      uptime: this.getUptime(),
-      redis: this.redisHelper.isReady() ? statusOk : statusError,
       service: statusOk,
+      uptime: StatusController.getUptime(),
+      redis: await StatusController.getRedisHelper().isReady() ? statusOk : statusError,
     });
   }
 
@@ -47,7 +47,7 @@ class StatusController extends BaseController {
    */
   getVersion() {
     return this.respond({
-      uptime: this.getUptime(),
+      uptime: StatusController.getUptime(),
       version: process.env.APP_VERSION,
     });
   }

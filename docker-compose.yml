@@ -11,6 +11,9 @@ services:
       - ${PWD}:/var/www:delegated
     networks:
       - localenv_network
+    environment:
+      APP_REDIS_HOST: global-redis
+      APP_REDIS_PORT: 6379
 
 networks:
   localenv_network:

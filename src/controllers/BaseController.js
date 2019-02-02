@@ -1,5 +1,3 @@
-const IncomingMessage = require('http');
-
 class BaseController {
   /**
    * @param {IncomingMessage} req
