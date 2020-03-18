@@ -20,7 +20,7 @@ This application is not intended to be used on its own and should only be used a
 
 * Simple web framework
 * Example routes:
-  * `Hello World` home endpoint
+  * `Hello world` home endpoint
   * Health endpoints (i.e. `health`, `ready`, and `version` endpoints)
 * Example helper library (i.e. `RedisHelper`)
 * Unit tests

@@ -7,7 +7,7 @@ const StatusController = require('./controllers/StatusController');
 const app = express();
 const port = 8080;
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => res.send('Hello world, from Node.js!'));
 
 app.get('/health', (req, res) => (new StatusController(req, res)).getHealth());
 
