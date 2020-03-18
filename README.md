@@ -37,4 +37,10 @@ Once running via [`localenv`](https://github.com/jroman00/localenv), connect to 
 docker-compose exec localenv-example-node sh
 ```
 
+To bring up a new container instance, run:
+
+```bash
+docker-compose --rm run localenv-example-php sh
+```
+
 Once connected to the running container, you can run commands directly via `npm` (e.g. `npm run lint`, `npm run test`). See the `scripts` section of `package.json` for the full list of available scripts
