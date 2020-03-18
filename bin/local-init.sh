@@ -23,7 +23,7 @@ main() {
 
     # Install node dependencies
     echo "Installing dependencies..."
-    docker-compose run --rm localenv-example-node npm i
+    docker-compose run --rm localenv-example-node npm ci
 
     # Start docker containers
     echo "Starting containers with docker-compose..."
