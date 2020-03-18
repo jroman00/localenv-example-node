@@ -12,7 +12,7 @@ WORKDIR /var/www
 COPY . /var/www
 
 # Expose application port
-EXPOSE 8081
+EXPOSE 8080
 
 # Run start command
 CMD ["npm", "run", "start"]
