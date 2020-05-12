@@ -37,13 +37,12 @@ main() {
 usage() {
   cat <<EOF
 
-Usage: $BIN_ROOT/$(basename $0) <options>
+Usage: bash $BIN_ROOT/$(basename $0) <options>
 
 Script used to initialize this application
 
 Options:
-  -h                Print this message and quit
-
+  -h, --help              Print this message and quit
 EOF
 }
 
@@ -51,6 +50,12 @@ EOF
 while getopts ":h-:" opt; do
   case "$opt" in
     h) usage && exit 0;;
+    -)
+      case "${OPTARG}" in
+        help) usage && exit 0;;
+        *) echo "Invalid option: --$OPTARG." && usage && exit 1;;
+      esac
+    ;;
     \?) echo "Invalid option: -$OPTARG." && usage && exit 1;;
     :) echo >&2 "Option -$OPTARG requires an argument." && exit 1;;
   esac
