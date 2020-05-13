@@ -1,19 +1,13 @@
+<!-- omit in toc -->
 # jroman00/localenv-example-node
 
 A simple Node.js application built as an example for localenv [`localenv`](https://github.com/jroman00/localenv)
-
-
-<!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
 
 - [Getting Started](#getting-started)
 - [Technologies](#technologies)
 - [Features](#features)
 - [Scripts](#scripts)
   - [Running a Shell](#running-a-shell)
-
-<!-- /code_chunk_output -->
 
 ---
 
