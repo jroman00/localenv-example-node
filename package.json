@@ -1,6 +1,6 @@
 {
   "name": "@jroman/localenv-example-node",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A simple Node.js application built as an example for localenv",
   "main": "lib/app.js",
   "directories": {
