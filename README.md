@@ -9,8 +9,6 @@ A simple Node.js application built as an example for localenv [`localenv`](https
 - [Scripts](#scripts)
   - [Running a Shell](#running-a-shell)
 
----
-
 ## Getting Started
 
 This application is not intended to be used on its own and should only be used as part of the [`localenv`](https://github.com/jroman00/localenv) ecosystem. See the [localenv installation instructions](https://github.com/jroman00/localenv/blob/master/README.md) to get started
