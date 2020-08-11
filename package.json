@@ -16,7 +16,7 @@
     "eslint-plugin-import": "^2.22.0",
     "jest": "^24.9.0",
     "jest-cli": "^24.9.0",
-    "nodemon": "^1.19.4"
+    "nodemon": "^2.0.4"
   },
   "scripts": {
     "lint": "eslint src",
