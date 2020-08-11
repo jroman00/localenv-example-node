@@ -1,4 +1,4 @@
-FROM node:13.10.1-buster-slim
+FROM node:13.11.0-buster-slim
 
 # Set up environment variables
 ENV APP_NAME localenv-example-node
