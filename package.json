@@ -19,7 +19,7 @@
     "nodemon": "^2.0.15"
   },
   "scripts": {
-    "lint": "eslint src -p",
+    "lint": "eslint src",
     "lint:fix": "eslint --fix src",
     "start": "node src/app.js",
     "start:dev": "nodemon --watch src --exec \"npm run start\"",
