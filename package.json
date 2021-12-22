@@ -8,23 +8,23 @@
   },
   "dependencies": {
     "express": "^4.17.2",
-    "redis": "^2.8.0"
+    "redis": "^4.0.1"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
+    "eslint": "^8.5.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.25.3",
-    "jest": "^24.9.0",
-    "jest-cli": "^24.9.0",
+    "jest": "^27.4.5",
+    "jest-cli": "^27.4.5",
     "nodemon": "^2.0.15"
   },
   "scripts": {
-    "lint": "eslint src",
-    "lint-fix": "eslint --fix src",
+    "lint": "eslint src -p",
+    "lint:fix": "eslint --fix src",
     "start": "node src/app.js",
-    "start-dev": "nodemon --watch src --exec \"npm run start\"",
+    "start:dev": "nodemon --watch src --exec \"npm run start\"",
     "test": "jest test",
-    "test-coverage": "jest --coverage test"
+    "test:coverage": "jest --coverage test"
   },
   "author": "",
   "license": "ISC"
