@@ -7,16 +7,16 @@
     "lib": "lib"
   },
   "dependencies": {
-    "express": "^4.17.2",
-    "redis": "^4.0.1"
+    "express": "^4.18.2",
+    "redis": "^4.6.5"
   },
   "devDependencies": {
-    "eslint": "^8.5.0",
+    "eslint": "^8.37.0",
     "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-plugin-import": "^2.25.3",
-    "jest": "^27.4.5",
-    "jest-cli": "^27.4.5",
-    "nodemon": "^2.0.15"
+    "eslint-plugin-import": "^2.27.5",
+    "jest": "^27.5.1",
+    "jest-cli": "^27.5.1",
+    "nodemon": "^2.0.22"
   },
   "scripts": {
     "lint": "eslint src",

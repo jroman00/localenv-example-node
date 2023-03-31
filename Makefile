@@ -30,3 +30,18 @@ start:
 .PHONY: stop
 stop:
 	bash ./bin/local-stop.sh
+
+## lint: Run lint suite
+.PHONY: lint
+lint:
+	docker-compose run --rm localenv-example-node npm run lint
+
+## lint-fix: Run lint suite fixer
+.PHONY: lint-fix
+lint-fix:
+	docker-compose run --rm localenv-example-node npm run lint:fix
+
+## test: Run test suite
+.PHONY: test
+test:
+	docker-compose run --rm localenv-example-node npm run test

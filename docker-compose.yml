@@ -4,7 +4,7 @@ services:
   localenv-example-node:
     container_name: localenv-example-node
     build: .
-    command: ["npm", "run", "start-dev"]
+    command: ["npm", "run", "start:dev"]
     ports:
       - "8080:8080"
     volumes:
