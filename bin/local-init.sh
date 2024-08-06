@@ -18,16 +18,16 @@ main() {
     cd $APP_DIR
 
     # Build docker images
-    echo "Building docker images with docker-compose..."
-    docker-compose build
+    echo "Building docker images with docker compose..."
+    docker compose build
 
     # Install node dependencies
     echo "Installing dependencies..."
-    docker-compose run --rm localenv-example-node npm ci
+    docker compose run --rm localenv-example-node npm ci
 
     # Start docker containers
-    echo "Starting containers with docker-compose..."
-    docker-compose up -d
+    echo "Starting containers with docker compose..."
+    docker compose up -d
   )
 
   echo_green "localenv-example-node repo setup successfully!"

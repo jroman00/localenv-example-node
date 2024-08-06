@@ -10,11 +10,11 @@ init: ## Initialize the local env, install dependencies, and build all container
 
 .PHONY: log
 log: ## Tail container logs
-	docker-compose logs -f localenv-example-node
+	docker compose logs -f localenv-example-node
 
 .PHONY: shell
 shell: ## Start a shell session in a new container
-	docker-compose run --rm localenv-example-node bash
+	docker compose run --rm localenv-example-node bash
 
 .PHONY: start
 start: ## Start containers and run the application
@@ -26,12 +26,12 @@ stop: ## Stop containers and the application
 
 .PHONY: lint
 lint: ## Run the lint suite
-	docker-compose run --rm localenv-example-node npm run lint
+	docker compose run --rm localenv-example-node npm run lint
 
 .PHONY: lint-fix
 lint-fix: ## Run the lint suite fixer
-	docker-compose run --rm localenv-example-node npm run lint:fix
+	docker compose run --rm localenv-example-node npm run lint:fix
 
 .PHONY: test
 test: ## Run the test suite
-	docker-compose run --rm localenv-example-node npm run test
+	docker compose run --rm localenv-example-node npm run test

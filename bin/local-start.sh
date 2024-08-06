@@ -18,7 +18,7 @@ main() {
     cd $APP_DIR
 
     # Start docker containers
-    docker-compose up -d
+    docker compose up -d
   )
 
   echo_green "localenv-example-node repo started successfully!\n"
