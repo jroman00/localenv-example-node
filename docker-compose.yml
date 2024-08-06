@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   localenv-example-node:
     container_name: localenv-example-node
