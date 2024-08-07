@@ -1,5 +1,6 @@
 const BaseController = require('./BaseController');
 const MysqlHelper = require('../helpers/MysqlHelper');
+const PostgresHelper = require('../helpers/PostgresHelper');
 const RedisHelper = require('../helpers/RedisHelper');
 
 const startTime = Date.now();
@@ -13,6 +14,13 @@ class StatusController extends BaseController {
    */
   static getMysqlHelper() {
     return MysqlHelper.getInstance();
+  }
+
+  /**
+   * @returns {PostgresHelper}
+   */
+  static getPostgresHelper() {
+    return PostgresHelper.getInstance();
   }
 
   /**
@@ -44,12 +52,14 @@ class StatusController extends BaseController {
    */
   async getReady() {
     const mysqlHelper = await StatusController.getMysqlHelper();
+    const postgresHelper = await StatusController.getPostgresHelper();
     const redisHelper = await StatusController.getRedisHelper();
 
     return this.respond({
       service: statusOk,
       uptime: StatusController.getUptime(),
       mysql: await mysqlHelper.isReady() ? statusOk : statusError,
+      postgres: await postgresHelper.isReady() ? statusOk : statusError,
       redis: await redisHelper.isReady() ? statusOk : statusError,
     });
   }
