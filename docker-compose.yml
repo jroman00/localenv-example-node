@@ -10,6 +10,11 @@ services:
     networks:
       - localenv_network
     environment:
+      APP_MYSQL_HOST: global-mysql
+      APP_MYSQL_PORT: 3306
+      APP_MYSQL_USER: mysql
+      APP_MYSQL_PASSWORD: superdupersecret
+      APP_MYSQL_DATABASE: localenv
       APP_REDIS_HOST: global-redis
       APP_REDIS_PORT: 6379
 

@@ -13,12 +13,12 @@ class RedisHelper {
   /**
    * @returns {RedisHelper}
    */
-  static getInstance() {
+  static async getInstance() {
     if (!instance) {
       const host = process.env.APP_REDIS_HOST;
       const port = parseInt(process.env.APP_REDIS_PORT, 10);
 
-      const client = createClient({
+      const client = await createClient({
         url: `redis://${host}:${port}`,
       });
 
@@ -41,7 +41,11 @@ class RedisHelper {
    * @returns {boolean}
    */
   async isReady() {
-    return await this.client.ping() === 'PONG';
+    try {
+      return await this.client.ping() === 'PONG';
+    } catch {
+      return false;
+    }
   }
 }
 
