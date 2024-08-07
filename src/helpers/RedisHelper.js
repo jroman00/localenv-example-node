@@ -1,4 +1,4 @@
-const redis = require('redis');
+const { createClient } = require("redis");
 const util = require('util');
 
 let instance;
@@ -16,10 +16,16 @@ class RedisHelper {
    */
   static getInstance() {
     if (!instance) {
-      const client = redis.createClient({
-        host: process.env.APP_REDIS_HOST,
-        port: parseInt(process.env.APP_REDIS_PORT, 10),
+      const host = process.env.APP_REDIS_HOST;
+      const port = parseInt(process.env.APP_REDIS_PORT, 10);
+
+      const client = createClient({
+        url: `redis://${host}:${port}`
       });
+
+      client.on('error', (err) => console.log('Redis Client Error', err));
+
+      client.connect();
 
       instance = new RedisHelper(client);
     }
@@ -38,9 +44,7 @@ class RedisHelper {
    * @returns {boolean}
    */
   async isReady() {
-    const myGet = util.promisify(this.client.ping).bind(this.client);
-
-    return await myGet() === 'PONG';
+    return await this.client.ping() === 'PONG';
   }
 }
 
