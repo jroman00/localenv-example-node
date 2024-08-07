@@ -1,5 +1,4 @@
-const { createClient } = require("redis");
-const util = require('util');
+const { createClient } = require('redis');
 
 let instance;
 
@@ -20,10 +19,8 @@ class RedisHelper {
       const port = parseInt(process.env.APP_REDIS_PORT, 10);
 
       const client = createClient({
-        url: `redis://${host}:${port}`
+        url: `redis://${host}:${port}`,
       });
-
-      client.on('error', (err) => console.log('Redis Client Error', err));
 
       client.connect();
 
