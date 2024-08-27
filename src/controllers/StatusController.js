@@ -43,6 +43,7 @@ class StatusController extends BaseController {
   getHealth() {
     return this.respond({
       service: statusOk,
+      version: process.env.APP_VERSION,
       uptime: StatusController.getUptime(),
     });
   }
@@ -55,23 +56,22 @@ class StatusController extends BaseController {
     const postgresHelper = await StatusController.getPostgresHelper();
     const redisHelper = await StatusController.getRedisHelper();
 
+    const mysqlIsReady = await mysqlHelper.isReady();
+    const postgresIsReady = await postgresHelper.isReady();
+    const redisIsReady = await redisHelper.isReady();
+
+    let status = 200;
+    if (!mysqlIsReady || !postgresIsReady || !redisIsReady) {
+        status = 500;
+    }
+
     return this.respond({
       service: statusOk,
       uptime: StatusController.getUptime(),
-      mysql: await mysqlHelper.isReady() ? statusOk : statusError,
-      postgres: await postgresHelper.isReady() ? statusOk : statusError,
-      redis: await redisHelper.isReady() ? statusOk : statusError,
-    });
-  }
-
-  /**
-   * @returns {ServerResponse}
-   */
-  getVersion() {
-    return this.respond({
-      uptime: StatusController.getUptime(),
-      version: process.env.APP_VERSION,
-    });
+      mysql: mysqlIsReady ? statusOk : statusError,
+      postgres: postgresIsReady ? statusOk : statusError,
+      redis: redisIsReady ? statusOk : statusError,
+    }, status);
   }
 }
 

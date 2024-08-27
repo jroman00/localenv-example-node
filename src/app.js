@@ -13,6 +13,4 @@ app.get('/health', (req, res) => (new StatusController(req, res)).getHealth());
 
 app.get('/ready', (req, res) => (new StatusController(req, res)).getReady());
 
-app.get('/version', (req, res) => (new StatusController(req, res)).getVersion());
-
 app.listen(port);
