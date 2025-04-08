@@ -67,10 +67,13 @@ class StatusController extends BaseController {
 
     return this.respond({
       service: statusOk,
+      version: process.env.APP_VERSION,
       uptime: StatusController.getUptime(),
-      mysql: mysqlIsReady ? statusOk : statusError,
-      postgres: postgresIsReady ? statusOk : statusError,
-      redis: redisIsReady ? statusOk : statusError,
+      dependencies: {
+        mysql: mysqlIsReady ? statusOk : statusError,
+        postgres: postgresIsReady ? statusOk : statusError,
+        redis: redisIsReady ? statusOk : statusError,
+      },
     }, status);
   }
 }
